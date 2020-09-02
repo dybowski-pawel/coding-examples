@@ -35,7 +35,7 @@ public:
      *
      * @return Current version in format major.minor.patch+build
      ******************************************************************************/
-    static std::string getVersion();
+    static std::string GetVersion();
 
     /*******************************************************************************
      * Calculate value of current code version.
@@ -44,12 +44,12 @@ public:
      *
      * @return Value of version in format major*1.000.000 + minor*1.000 + patch
      ******************************************************************************/
-    static int calculateValue();
+    static int CalculateValue();
 
 private:
     static constexpr char* VERSION_MAJOR = (char*) "0";
     static constexpr char* VERSION_MINOR = (char*) "1";
-    static constexpr char* VERSION_PATCH = (char*) "1";
+    static constexpr char* VERSION_PATCH = (char*) "2";
     static constexpr char* VERSION_BUILD = (char*) "";
 };
 

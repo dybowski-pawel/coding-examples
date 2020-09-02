@@ -24,20 +24,20 @@
 
 #include "RectanglePrinter.h"
 
-void RectanglePrinter::printRectangle(int rows, int cols) {
+void RectanglePrinter::PrintRectangle(int rows, int cols) {
     std::string edgeChar = "x", middleChar = " ";
-    drawEdge(cols, edgeChar);
+    DrawEdge(cols, edgeChar);
     for(int i=1; i<rows-1; i++) {
-        drawCenter(cols, edgeChar, middleChar);
+        DrawCenter(cols, edgeChar, middleChar);
     }
-    drawEdge(cols, edgeChar);
+    DrawEdge(cols, edgeChar);
 }
 
-void RectanglePrinter::drawEdge(int cols, std::string edgeChar) {
-    drawCenter(cols, edgeChar, edgeChar);
+void RectanglePrinter::DrawEdge(int cols, std::string edgeChar) {
+    DrawCenter(cols, edgeChar, edgeChar);
 }
 
-void RectanglePrinter::drawCenter(int cols, std::string edgeChar, std::string middleChar) {
+void RectanglePrinter::DrawCenter(int cols, std::string edgeChar, std::string middleChar) {
     std::cout << edgeChar;
     for(int i=1; i<cols-1; i++) {
         std::cout << middleChar;

@@ -32,11 +32,11 @@ public:
      * @param cols Number of columns the rectangle is supposed to have
      * @param rows Number of rows the rectangle is supposed to have
      ******************************************************************************/
-    static void printRectangle(int rows, int cols);
+    static void PrintRectangle(int rows, int cols);
 
 private:
-    static void drawEdge(int cols, std::string edgeChar);
-    static void drawCenter(int cols, std::string edgeChar, std::string middleChar);
+    static void DrawEdge(int cols, std::string edgeChar);
+    static void DrawCenter(int cols, std::string edgeChar, std::string middleChar);
 };
 
 #endif //EXAMPLES_RECTANGLEPRINTER_H

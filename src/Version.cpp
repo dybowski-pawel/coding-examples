@@ -22,7 +22,7 @@
 
 #include <Version.h>
 
-std::string Version::getVersion() {
+std::string Version::GetVersion() {
     std::string out;
     out.append(VERSION_MAJOR).append(".");
     out.append(VERSION_MINOR).append(".");
@@ -34,7 +34,7 @@ std::string Version::getVersion() {
     return out;
 }
 
-int Version::calculateValue() {
+int Version::CalculateValue() {
     int value = 0;
     value += std::stoi(VERSION_MAJOR)*1000*1000;
     value += std::stoi(VERSION_MINOR)*1000;
