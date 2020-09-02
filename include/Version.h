@@ -28,6 +28,8 @@
 class Version {
 public:
 
+    Version() = delete;
+
     /*******************************************************************************
      * Get current code version
      *
@@ -40,21 +42,15 @@ public:
      *
      * Obtained value can be used to determine which version of code is newer
      *
-     * @return Value of version in format major*10000+minor*100+patch
+     * @return Value of version in format major*1.000.000 + minor*1.000 + patch
      ******************************************************************************/
     static int calculateValue();
 
 private:
-    Version() = default;
-    Version(Version const&);
-    void operator=(Version const&);
-
-    static void initialize();
-    static std::string VERSION_MAJOR;
-    static std::string VERSION_MINOR;
-    static std::string VERSION_PATCH;
-    static std::string VERSION_BUILD;
-    static bool initialized;
+    static constexpr char* VERSION_MAJOR = (char*) "0";
+    static constexpr char* VERSION_MINOR = (char*) "1";
+    static constexpr char* VERSION_PATCH = (char*) "1";
+    static constexpr char* VERSION_BUILD = (char*) "";
 };
 
 #endif //EXAMPLES_VERSION_H

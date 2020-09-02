@@ -22,32 +22,22 @@
 
 #include <Version.h>
 
-void Version::initialize() {
-    VERSION_MAJOR = "0";
-    VERSION_MINOR = "1";
-    VERSION_PATCH = "0";
-    VERSION_BUILD = "";
-    initialized = true;
-}
-
 std::string Version::getVersion() {
-    if(!initialized) {
-        initialize();
+    std::string out;
+    out.append(VERSION_MAJOR).append(".");
+    out.append(VERSION_MINOR).append(".");
+    out.append(VERSION_PATCH);
+
+    if(!std::string(VERSION_BUILD).empty()) {
+        out.append("+").append(VERSION_BUILD);
     }
-    std::string out = std::string(VERSION_MAJOR+"."+VERSION_MINOR+"."+VERSION_PATCH);
-    if(!VERSION_BUILD.empty()) {
-        out += "+"+VERSION_BUILD;
-    }
-    return std::string(out);
+    return out;
 }
 
 int Version::calculateValue() {
-    if(!initialized) {
-        initialize();
-    }
     int value = 0;
-    value += std::stoi(VERSION_BUILD)*100*100;
-    value += std::stoi(VERSION_MAJOR)*100;
-    value += std::stoi(VERSION_MINOR);
+    value += std::stoi(VERSION_MAJOR)*1000*1000;
+    value += std::stoi(VERSION_MINOR)*1000;
+    value += std::stoi(VERSION_PATCH);
     return value;
 }
