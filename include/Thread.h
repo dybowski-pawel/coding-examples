@@ -37,12 +37,12 @@ public:
     /*******************************************************************************
      * Constructor of Thread class
      *
-     * @param numberOfLoops How many times should loop be executed. -1 means infinite
+     * @param numberOfLoops How many times should loop be executed. 0 means infinite
      * @param timeoutInMilliseconds How long to wait between each loop execution. 0 means no wait
      * @param startImmediately Should thread be started immediately on creation
      * It is worth to have at least some timeout to not kill the processor
      ******************************************************************************/
-    explicit Thread(int numberOfLoops = -1, bool startImmediately = false, unsigned long timeoutInMilliseconds = 10);
+    explicit Thread(unsigned long numberOfLoops = 0, bool startImmediately = false, unsigned long timeoutInMilliseconds = 10);
 
     /*******************************************************************************
      * Start new thread if none is already running
@@ -268,7 +268,7 @@ protected:
     std::atomic_bool done_ {false};
 
     std::atomic_ulong timeout_;
-    std::atomic_int loop_count_;
+    std::atomic_ulong loop_count_;
 
     std::mutex mutex_;
     std::thread* thread_ {nullptr};

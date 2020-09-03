@@ -21,8 +21,9 @@
 //
 
 #include "Thread.h"
+#include <iostream>
 
-Thread::Thread(int numberOfLoops, bool startImmediately, unsigned long timeoutInMilliseconds)
+Thread::Thread(unsigned long numberOfLoops, bool startImmediately, unsigned long timeoutInMilliseconds)
         : loop_count_(numberOfLoops)
         , timeout_(timeoutInMilliseconds) {
     if(startImmediately) {
@@ -123,7 +124,7 @@ void Thread::operator()() {
     Init();
     SetReady();
     unsigned int loops_done = 0;
-    while(!IsStopRequested() && (loop_count_ == -1 || loops_done < loop_count_)) {
+    while(!IsStopRequested() && (loop_count_ == 0 || loops_done < loop_count_)) {
         if(IsPaused()) {
             if(IsResumeRequested()) {
                 std::unique_lock<std::mutex> lock(mutex_);
@@ -137,7 +138,9 @@ void Thread::operator()() {
                 pauseRequested_ = false;
             } else {
                 Loop();
-                loops_done++;
+                if(loop_count_ > 0) {
+                    loops_done++;
+                }
             }
         }
         Sleep(timeout_);
