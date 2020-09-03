@@ -97,11 +97,6 @@ void Thread::CleanUp() {
     done_ = false;
 }
 
-bool Thread::Pause() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return pauseRequested_ ? false : (pauseRequested_ = true);
-}
-
 bool Thread::PauseAndWait() {
     if(!Pause()) {
         return false;
@@ -113,11 +108,6 @@ bool Thread::PauseAndWait() {
     }
 }
 
-bool Thread::Resume() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return resumeRequested_ ? false : (resumeRequested_ = true);
-}
-
 bool Thread::ResumeAndWait() {
     if(!Resume()) {
         return false;
@@ -127,51 +117,6 @@ bool Thread::ResumeAndWait() {
         }
         return true;
     }
-}
-
-bool Thread::IsStarted() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return started_;
-}
-
-bool Thread::IsReady() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return ready_;
-}
-
-bool Thread::IsPaused() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return paused_;
-}
-
-bool Thread::IsPauseRequested() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return pauseRequested_;
-}
-
-bool Thread::IsResumeRequested() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return resumeRequested_;
-}
-
-bool Thread::IsStopRequested() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return stopRequested_;
-}
-
-bool Thread::IsDone() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    return done_;
-}
-
-void Thread::SetReady() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    ready_ = true;
-}
-
-void Thread::SetDone() {
-    std::unique_lock<std::mutex> lock(mutex_);
-    done_ = true;
 }
 
 void Thread::operator()() {
@@ -200,7 +145,3 @@ void Thread::operator()() {
     DeInit();
     SetDone();
 }
-
-void Thread::Sleep(const unsigned long & timeoutInMilliseconds) {
-    std::this_thread::sleep_for(std::chrono::milliseconds(timeoutInMilliseconds));
-};

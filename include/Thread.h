@@ -100,7 +100,10 @@ public:
      *
      * @return if new pause request was made
      ******************************************************************************/
-    inline bool Pause();
+    inline bool Pause() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return pauseRequested_ ? false : (pauseRequested_ = true);
+    }
 
     /*******************************************************************************
      * Pause and wait for thread to finish loop
@@ -116,7 +119,10 @@ public:
      *
      * @return if new resume request was made
      ******************************************************************************/
-    inline bool Resume();
+    inline bool Resume() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return resumeRequested_ ? false : (resumeRequested_ = true);
+    }
 
     /*******************************************************************************
      * Resume and wait for thread to start loop
@@ -131,49 +137,70 @@ public:
      *
      * @return is paused
      ******************************************************************************/
-    inline bool IsStarted();
+    inline bool IsStarted() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return started_;
+    }
 
     /*******************************************************************************
      * Check if thread has initialized
      *
      * @return is ready
      ******************************************************************************/
-    inline bool IsReady();
+    inline bool IsReady() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return ready_;
+    }
 
     /*******************************************************************************
      * Check if thread is paused
      *
      * @return is paused
      ******************************************************************************/
-    inline bool IsPaused();
+    inline bool IsPaused() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return paused_;
+    }
 
     /*******************************************************************************
      * Check if thread has scheduled to pause
      *
      * @return is thread scheduled for pause
      ******************************************************************************/
-    inline bool IsPauseRequested();
+    inline bool IsPauseRequested() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return pauseRequested_;
+    }
 
     /*******************************************************************************
      * Check if thread has scheduled to resume
      *
      * @return is thread scheduled for resume
      ******************************************************************************/
-    inline bool IsResumeRequested();
+    inline bool IsResumeRequested() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return resumeRequested_;
+    }
 
     /*******************************************************************************
      * Check if thread has scheduled to stop
      *
      * @return is thread scheduled for stop
      ******************************************************************************/
-    inline bool IsStopRequested();
+    inline bool IsStopRequested() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return stopRequested_;
+    }
 
     /*******************************************************************************
      * Check if thread finished working
      *
      * @return is done
      ******************************************************************************/
-    inline bool IsDone();
+    inline bool IsDone() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        return done_;
+    }
 
     /*******************************************************************************
      * Freeze calling thread for specified time
@@ -181,7 +208,9 @@ public:
      * @param timeoutInMilliseconds For how long should the thread be frozen. In milliseconds.
      * Default sleep is 10 milliseconds
      ******************************************************************************/
-    inline static void Sleep(const unsigned long & timeoutInMilliseconds = 10);
+    inline static void Sleep(const unsigned long & timeoutInMilliseconds = 10) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(timeoutInMilliseconds));
+    };
 
 protected:
 
@@ -217,12 +246,18 @@ protected:
     /*******************************************************************************
      * Sets ready status to true
      ******************************************************************************/
-    inline void SetReady();
+    inline void SetReady() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        ready_ = true;
+    }
 
     /*******************************************************************************
      * Sets done status to true
      ******************************************************************************/
-    inline void SetDone();
+    inline void SetDone() {
+        std::unique_lock<std::mutex> lock(mutex_);
+        done_ = true;
+    }
 
     std::atomic_bool started_ {false};
     std::atomic_bool stopRequested_ {false};
