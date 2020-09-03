@@ -35,7 +35,18 @@ public:
     static void PrintRectangle(int rows, int cols);
 
 private:
+    /*******************************************************************************
+     * Print rectangle's edge with given character.
+     * @param cols Number of columns the edge is supposed to have
+     * @param edgeChar what character to use while drawing edge
+     ******************************************************************************/
     static void DrawEdge(int cols, std::string edgeChar);
+
+    /*******************************************************************************
+     * Print rectangle's center with given character
+     * @param edgeChar what character to use as first and last in drawing
+     * @param middleChar what character to use in between edges in drawing
+     ******************************************************************************/
     static void DrawCenter(int cols, std::string edgeChar, std::string middleChar);
 };
 

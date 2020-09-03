@@ -49,7 +49,7 @@ public:
 private:
     static constexpr char* VERSION_MAJOR = (char*) "0";
     static constexpr char* VERSION_MINOR = (char*) "1";
-    static constexpr char* VERSION_PATCH = (char*) "2";
+    static constexpr char* VERSION_PATCH = (char*) "3";
     static constexpr char* VERSION_BUILD = (char*) "";
 };
 
