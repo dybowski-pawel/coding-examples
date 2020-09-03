@@ -16,12 +16,17 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Examples.  If not, see <https://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.5)
-project(Examples)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
-SET(CMAKE_CXX_STANDARD 11)
+SET(source_Files
+        src/main.cpp
+        src/Counter.cpp
+        ../../src/Thread.cpp
+        ../../src/Version.cpp
+        )
 
 include_directories(include)
 
-add_subdirectory(examples/hello-world)
-add_subdirectory(examples/simple-buffer)
+add_executable(simple-buffer
+        ${source_Files}
+        )
