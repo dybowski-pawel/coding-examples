@@ -70,7 +70,7 @@ public:
         while(queue_.empty()) {
             conditionalVariable_.wait(lock);
         }
-        const auto & item = queue_.front();
+        auto item = queue_.front();
         queue_.pop();
         return item;
     }
