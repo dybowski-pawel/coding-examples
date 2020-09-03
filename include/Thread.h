@@ -225,7 +225,7 @@ protected:
      *
      * @overload It must be overloaded to work
      ******************************************************************************/
-    virtual void Init() = 0;
+    virtual void Init() {};
 
     /*******************************************************************************
      * Method that will be happening in a loop
@@ -233,7 +233,7 @@ protected:
      *
      * @overload It must be overloaded to work
      ******************************************************************************/
-    virtual void Loop() = 0;
+    virtual void Loop() {};
 
     /*******************************************************************************
      * Method that will be called after loop ends
@@ -241,7 +241,7 @@ protected:
      *
      * @overload It must be overloaded to work
      ******************************************************************************/
-    virtual void DeInit() = 0;
+    virtual void DeInit() {};
 
     /*******************************************************************************
      * Sets ready status to true
