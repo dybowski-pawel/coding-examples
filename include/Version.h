@@ -47,10 +47,10 @@ public:
     static int CalculateValue();
 
 private:
-    static constexpr char* VERSION_MAJOR = (char*) "0";
-    static constexpr char* VERSION_MINOR = (char*) "1";
-    static constexpr char* VERSION_PATCH = (char*) "10";
-    static constexpr char* VERSION_BUILD = (char*) "";
+    static constexpr char *VERSION_MAJOR = (char *) "0";
+    static constexpr char *VERSION_MINOR = (char *) "1";
+    static constexpr char *VERSION_PATCH = (char *) "11";
+    static constexpr char *VERSION_BUILD = (char *) "";
 };
 
 #endif //EXAMPLES_VERSION_H

@@ -35,14 +35,14 @@
  * You can add, get, clear items to/from it.
  * Best suited for communication between threads
  ******************************************************************************/
-template <typename Data>
+template<typename Data>
 class Buffer {
 public:
 
     /*******************************************************************************
      * Add new item to buffer and inform one listener
      ******************************************************************************/
-    void Add(const std::shared_ptr<Data>& data) {
+    void Add(const std::shared_ptr<Data> &data) {
         std::unique_lock<std::mutex> lock(mutex_);
         queue_.push(data);
         lock.unlock();
@@ -52,9 +52,9 @@ public:
     /*******************************************************************************
      * Create shared_ptr from item and add it to buffer and inform one listener
      ******************************************************************************/
-    void Add(const Data& data) {
+    void Add(const Data &data) {
         std::unique_lock<std::mutex> lock(mutex_);
-        const auto & item = std::make_shared<Data>(data);
+        const auto &item = std::make_shared<Data>(data);
         queue_.push(item);
         lock.unlock();
         conditionalVariable_.notify_one();
@@ -67,7 +67,7 @@ public:
      ******************************************************************************/
     std::shared_ptr<Data> Get() {
         std::unique_lock<std::mutex> lock(mutex_);
-        while(queue_.empty()) {
+        while (queue_.empty()) {
             conditionalVariable_.wait(lock);
         }
         auto item = queue_.front();
@@ -83,13 +83,13 @@ public:
      ******************************************************************************/
     std::shared_ptr<Data> GetOrWait(const unsigned int &timeoutInMilliseconds) {
         std::unique_lock<std::mutex> lock(mutex_);
-        if(queue_.empty()) {
-            const auto & status = conditionalVariable_.wait_for(lock, std::chrono::milliseconds(timeoutInMilliseconds));
-            if(status == std::cv_status::timeout) {
+        if (queue_.empty()) {
+            const auto &status = conditionalVariable_.wait_for(lock, std::chrono::milliseconds(timeoutInMilliseconds));
+            if (status == std::cv_status::timeout) {
                 return std::shared_ptr<Data>(nullptr);
             }
         }
-        const auto & item = queue_.front();
+        const auto &item = queue_.front();
         queue_.pop();
         return item;
     }

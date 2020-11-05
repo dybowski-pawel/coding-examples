@@ -22,8 +22,9 @@
 
 #include "Counter.h"
 #include <iostream>
+
 void Counter::AddToBuffer(int value) {
-    if(!IsReady() || IsStopRequested()) {
+    if (!IsReady() || IsStopRequested()) {
         return;;
     }
     number_buffer_.Add(value);
@@ -40,7 +41,7 @@ void Counter::DisplayAccumulatedValue() {
 }
 
 void Counter::Loop() {
-    const auto & value = number_buffer_.Get();
+    const auto &value = number_buffer_.Get();
     std::unique_lock<std::mutex> lock(mutex_);
     accumulated_value_ += (*value.get());
 }

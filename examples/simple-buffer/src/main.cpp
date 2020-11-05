@@ -27,7 +27,7 @@
 int main(int argc, const char *argv[]) {
 
     std::cout << "Version: " << Version::GetVersion() << std::endl << std::endl;
-    Counter counter(-1, true, 500);
+    Counter counter(0, true, 500);
     counter.WaitUntilReady();
     counter.AddToBuffer(4);
     counter.AddToBuffer(13);
@@ -36,7 +36,7 @@ int main(int argc, const char *argv[]) {
     counter.AddToBuffer(41);
     counter.AddToBuffer(1);
     counter.AddToBuffer(7);
-    while(!counter.IsBufferEmpty()) {
+    while (!counter.IsBufferEmpty()) {
         counter.DisplayAccumulatedValue();
         Thread::Sleep(200);
     }

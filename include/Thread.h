@@ -42,7 +42,8 @@ public:
      * @param startImmediately Should thread be started immediately on creation
      * It is worth to have at least some timeout to not kill the processor
      ******************************************************************************/
-    explicit Thread(unsigned long numberOfLoops = 0, bool startImmediately = false, unsigned long timeoutInMilliseconds = 10);
+    explicit Thread(unsigned long numberOfLoops = 0, bool startImmediately = false,
+                    unsigned long timeoutInMilliseconds = 10);
 
     /*******************************************************************************
      * Start new thread if none is already running
@@ -208,7 +209,7 @@ public:
      * @param timeoutInMilliseconds For how long should the thread be frozen. In milliseconds.
      * Default sleep is 10 milliseconds
      ******************************************************************************/
-    inline static void Sleep(const unsigned long & timeoutInMilliseconds = 10) {
+    inline static void Sleep(const unsigned long &timeoutInMilliseconds = 10) {
         std::this_thread::sleep_for(std::chrono::milliseconds(timeoutInMilliseconds));
     };
 
@@ -259,19 +260,19 @@ protected:
         done_ = true;
     }
 
-    std::atomic_bool started_ {false};
-    std::atomic_bool stopRequested_ {false};
-    std::atomic_bool pauseRequested_ {false};
-    std::atomic_bool resumeRequested_ {false};
-    std::atomic_bool ready_ {false};
-    std::atomic_bool paused_ {false};
-    std::atomic_bool done_ {false};
+    std::atomic_bool started_{false};
+    std::atomic_bool stopRequested_{false};
+    std::atomic_bool pauseRequested_{false};
+    std::atomic_bool resumeRequested_{false};
+    std::atomic_bool ready_{false};
+    std::atomic_bool paused_{false};
+    std::atomic_bool done_{false};
 
     std::atomic_ulong timeout_;
     std::atomic_ulong loop_count_;
 
     std::mutex mutex_;
-    std::thread* thread_ {nullptr};
+    std::thread *thread_{nullptr};
 
 };
 

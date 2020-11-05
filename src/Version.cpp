@@ -28,7 +28,7 @@ std::string Version::GetVersion() {
     out.append(VERSION_MINOR).append(".");
     out.append(VERSION_PATCH);
 
-    if(!std::string(VERSION_BUILD).empty()) {
+    if (!std::string(VERSION_BUILD).empty()) {
         out.append("+").append(VERSION_BUILD);
     }
     return out;
@@ -36,8 +36,8 @@ std::string Version::GetVersion() {
 
 int Version::CalculateValue() {
     int value = 0;
-    value += std::stoi(VERSION_MAJOR)*1000*1000;
-    value += std::stoi(VERSION_MINOR)*1000;
+    value += std::stoi(VERSION_MAJOR) * 1000 * 1000;
+    value += std::stoi(VERSION_MINOR) * 1000;
     value += std::stoi(VERSION_PATCH);
     return value;
 }

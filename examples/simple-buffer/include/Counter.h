@@ -44,6 +44,7 @@ public:
      * Print the sum in console
      ******************************************************************************/
     void DisplayAccumulatedValue();
+
 protected:
 
     /*******************************************************************************
@@ -58,7 +59,7 @@ protected:
 
     std::mutex mutex_;
     Buffer<int> number_buffer_;
-    int accumulated_value_ {0};
+    int accumulated_value_{0};
 };
 
 

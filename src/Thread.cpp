@@ -24,16 +24,15 @@
 #include <iostream>
 
 Thread::Thread(unsigned long numberOfLoops, bool startImmediately, unsigned long timeoutInMilliseconds)
-        : loop_count_(numberOfLoops)
-        , timeout_(timeoutInMilliseconds) {
-    if(startImmediately) {
+        : loop_count_(numberOfLoops), timeout_(timeoutInMilliseconds) {
+    if (startImmediately) {
         Start();
     }
 }
 
 bool Thread::Start() {
     if (IsStarted()) {
-        if(IsDone()) {
+        if (IsDone()) {
             StopAndWait();
         } else {
             return false;
@@ -46,17 +45,17 @@ bool Thread::Start() {
 }
 
 bool Thread::WaitUntilReady() {
-    if(!IsStarted()) {
+    if (!IsStarted()) {
         return false;
     }
-    while(!IsReady()) {
+    while (!IsReady()) {
         Sleep();
     }
     return true;
 }
 
 bool Thread::Stop() {
-    if(!IsStarted()) {
+    if (!IsStarted()) {
         return false;
     } else {
         std::unique_lock<std::mutex> lock(mutex_);
@@ -65,7 +64,7 @@ bool Thread::Stop() {
 }
 
 bool Thread::StopAndWait() {
-    if(!Stop()) {
+    if (!Stop()) {
         return false;
     } else {
         WaitUntilDone();
@@ -75,10 +74,10 @@ bool Thread::StopAndWait() {
 }
 
 bool Thread::WaitUntilDone() {
-    if(!IsStarted() || !IsStopRequested()) {
+    if (!IsStarted() || !IsStopRequested()) {
         return false;
     } else {
-        while(!IsDone()) {
+        while (!IsDone()) {
             Sleep();
         }
     }
@@ -99,10 +98,10 @@ void Thread::CleanUp() {
 }
 
 bool Thread::PauseAndWait() {
-    if(!Pause()) {
+    if (!Pause()) {
         return false;
     } else {
-        while(!IsPaused()) {
+        while (!IsPaused()) {
             Sleep();
         }
         return true;
@@ -110,10 +109,10 @@ bool Thread::PauseAndWait() {
 }
 
 bool Thread::ResumeAndWait() {
-    if(!Resume()) {
+    if (!Resume()) {
         return false;
     } else {
-        while(IsPaused()) {
+        while (IsPaused()) {
             Sleep();
         }
         return true;
@@ -124,21 +123,21 @@ void Thread::operator()() {
     Init();
     SetReady();
     unsigned int loops_done = 0;
-    while(!IsStopRequested() && (loop_count_ == 0 || loops_done < loop_count_)) {
-        if(IsPaused()) {
-            if(IsResumeRequested()) {
+    while (!IsStopRequested() && (loop_count_ == 0 || loops_done < loop_count_)) {
+        if (IsPaused()) {
+            if (IsResumeRequested()) {
                 std::unique_lock<std::mutex> lock(mutex_);
                 paused_ = false;
                 resumeRequested_ = false;
             }
         } else {
-            if(IsPauseRequested()) {
+            if (IsPauseRequested()) {
                 std::unique_lock<std::mutex> lock(mutex_);
                 paused_ = true;
                 pauseRequested_ = false;
             } else {
                 Loop();
-                if(loop_count_ > 0) {
+                if (loop_count_ > 0) {
                     loops_done++;
                 }
             }
