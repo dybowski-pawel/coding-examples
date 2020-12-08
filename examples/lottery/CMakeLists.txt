@@ -16,13 +16,15 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Examples.  If not, see <https://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.5)
-project(Examples)
-
-SET(CMAKE_CXX_STANDARD 11)
+SET(source_Files
+        src/main.cpp
+        src/Lottery.cpp
+        src/LottoTicket.cpp
+        ../../src/Version.cpp
+        src/LottoMachine.cpp)
 
 include_directories(include)
 
-add_subdirectory(examples/hello-world)
-add_subdirectory(examples/simple-buffer)
-add_subdirectory(examples/lottery)
+add_executable(lottery
+        ${source_Files}
+        )

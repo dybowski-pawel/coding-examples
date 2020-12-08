@@ -17,40 +17,26 @@
 //    along with Examples.  If not, see <https://www.gnu.org/licenses/>.
 
 //
-// Created by pawel on 17.03.20.
+// Created by pawel on 08.12.20.
 //
 
-#ifndef EXAMPLES_VERSION_H
-#define EXAMPLES_VERSION_H
+#ifndef EXAMPLES_LOTTERY_H
+#define EXAMPLES_LOTTERY_H
 
-#include <string>
 
-class Version {
+#include "LottoTicket.h"
+
+class Lottery {
 public:
-
-    Version() = delete;
-
     /*******************************************************************************
-     * Get current code version
-     *
-     * @return Current version in format major.minor.patch+build
+     * Returns a Lottery ticket from draws that it performs on a lotto machine
+     * @param bets Number of bets to make
+     * @param drawsPerBet Number of draws to make per bet. <br> Default: 6
+     * @param minValue Minimum value that can be drawn. <br> Default: 1
+     * @param maxValue Maximum value that can be drawn. <br> Default: 49
      ******************************************************************************/
-    static std::string GetVersion();
-
-    /*******************************************************************************
-     * Calculate value of current code version.
-     *
-     * Obtained value can be used to determine which version of code is newer
-     *
-     * @return Value of version in format major*1.000.000 + minor*1.000 + patch
-     ******************************************************************************/
-    static int CalculateValue();
-
-private:
-    static constexpr char *VERSION_MAJOR = (char *) "0";
-    static constexpr char *VERSION_MINOR = (char *) "1";
-    static constexpr char *VERSION_PATCH = (char *) "12";
-    static constexpr char *VERSION_BUILD = (char *) "";
+    static LottoTicket GetTicket(const unsigned int &bets, const unsigned int &drawsPerBet = 6, const int &minValue = 1, const int &maxValue = 49);
 };
 
-#endif //EXAMPLES_VERSION_H
+
+#endif //EXAMPLES_LOTTERY_H

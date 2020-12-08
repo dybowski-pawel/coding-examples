@@ -17,40 +17,44 @@
 //    along with Examples.  If not, see <https://www.gnu.org/licenses/>.
 
 //
-// Created by pawel on 17.03.20.
+// Created by pawel on 08.12.20.
 //
 
-#ifndef EXAMPLES_VERSION_H
-#define EXAMPLES_VERSION_H
+#ifndef EXAMPLES_LOTTOMACHINE_H
+#define EXAMPLES_LOTTOMACHINE_H
 
-#include <string>
+#include <set>
+#include <random>
 
-class Version {
+class LottoMachine {
 public:
 
-    Version() = delete;
+    /*******************************************************************************
+     * Creates a lotto machine
+     * @param minValue Minimum value that can be drawn
+     * @param maxValue Maximum value that can be drawn
+     ******************************************************************************/
+    LottoMachine(const int &minValue, const int &maxValue);
 
     /*******************************************************************************
-     * Get current code version
-     *
-     * @return Current version in format major.minor.patch+build
+     * Resets the machine
+     * After this operation all draws done so far are forgotten
      ******************************************************************************/
-    static std::string GetVersion();
+    void Reset();
 
     /*******************************************************************************
-     * Calculate value of current code version.
-     *
-     * Obtained value can be used to determine which version of code is newer
-     *
-     * @return Value of version in format major*1.000.000 + minor*1.000 + patch
+     * Does a new draw from the machine
+     * This draw is different from all draws done since last reset
+     * If all numbers have been drawn, 0 is returned
      ******************************************************************************/
-    static int CalculateValue();
+    int Draw();
 
 private:
-    static constexpr char *VERSION_MAJOR = (char *) "0";
-    static constexpr char *VERSION_MINOR = (char *) "1";
-    static constexpr char *VERSION_PATCH = (char *) "12";
-    static constexpr char *VERSION_BUILD = (char *) "";
+    std::set<int> draws_;
+    std::mt19937 mt_;
+    std::uniform_int_distribution<int> distribution_;
+    const unsigned int range;
 };
 
-#endif //EXAMPLES_VERSION_H
+
+#endif //EXAMPLES_LOTTOMACHINE_H

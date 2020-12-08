@@ -17,40 +17,36 @@
 //    along with Examples.  If not, see <https://www.gnu.org/licenses/>.
 
 //
-// Created by pawel on 17.03.20.
+// Created by pawel on 08.12.20.
 //
 
-#ifndef EXAMPLES_VERSION_H
-#define EXAMPLES_VERSION_H
+#ifndef EXAMPLES_LOTTOTICKET_H
+#define EXAMPLES_LOTTOTICKET_H
 
-#include <string>
+#include <vector>
 
-class Version {
+class LottoTicket {
 public:
-
-    Version() = delete;
+    /*******************************************************************************
+     * Return a vector of bets
+     * Each bet is a vector of unsigned int
+     ******************************************************************************/
+    std::vector<std::vector<int>> GetBets() const;
 
     /*******************************************************************************
-     * Get current code version
-     *
-     * @return Current version in format major.minor.patch+build
+     * Sorts and then adds new bet to collection
      ******************************************************************************/
-    static std::string GetVersion();
+    void AddNewBet(std::vector<int> newBet);
 
     /*******************************************************************************
-     * Calculate value of current code version.
-     *
-     * Obtained value can be used to determine which version of code is newer
-     *
-     * @return Value of version in format major*1.000.000 + minor*1.000 + patch
+     * Prints bets to screen in form<br>
+     * Id: x x x ... [newline]
      ******************************************************************************/
-    static int CalculateValue();
+    void PrintBets() const;
 
 private:
-    static constexpr char *VERSION_MAJOR = (char *) "0";
-    static constexpr char *VERSION_MINOR = (char *) "1";
-    static constexpr char *VERSION_PATCH = (char *) "12";
-    static constexpr char *VERSION_BUILD = (char *) "";
+    std::vector<std::vector<int>> bets_;
 };
 
-#endif //EXAMPLES_VERSION_H
+
+#endif //EXAMPLES_LOTTOTICKET_H
