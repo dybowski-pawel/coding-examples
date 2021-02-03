@@ -43,6 +43,7 @@ namespace dbs {
          * Calculate value of current code version.
          *
          * Obtained value can be used to determine which version of code is newer
+         * This can be used in database migrations
          *
          * @return Value of version in format major*1.000.000 + minor*1.000 + patch
          ******************************************************************************/
