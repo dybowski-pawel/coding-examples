@@ -20,9 +20,9 @@
 // Created by pawel on 17.03.20.
 //
 
-#include <iostream>
-
 #include "RectanglePrinter.h"
+
+#include <iostream>
 
 void RectanglePrinter::PrintRectangle(int rows, int cols) {
     std::string edgeChar = "x", middleChar = " ";

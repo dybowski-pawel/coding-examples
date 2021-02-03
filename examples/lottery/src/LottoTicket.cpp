@@ -20,7 +20,8 @@
 // Created by pawel on 08.12.20.
 //
 
-#include "../include/LottoTicket.h"
+#include "LottoTicket.h"
+
 #include <iostream>
 #include <algorithm>
 

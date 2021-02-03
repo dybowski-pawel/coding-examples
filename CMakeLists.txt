@@ -16,10 +16,11 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Examples.  If not, see <https://www.gnu.org/licenses/>.
 
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.15.2)
 project(Examples)
 
-SET(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 

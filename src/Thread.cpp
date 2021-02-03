@@ -21,16 +21,17 @@
 //
 
 #include "Thread.h"
+
 #include <iostream>
 
-Thread::Thread(unsigned long numberOfLoops, bool startImmediately, unsigned long timeoutInMilliseconds)
+dbs::Thread::Thread(unsigned long numberOfLoops, bool startImmediately, unsigned long timeoutInMilliseconds)
         : loop_count_(numberOfLoops), timeout_(timeoutInMilliseconds) {
     if (startImmediately) {
         Start();
     }
 }
 
-bool Thread::Start() {
+bool dbs::Thread::Start() {
     if (IsStarted()) {
         if (IsDone()) {
             StopAndWait();
@@ -44,7 +45,7 @@ bool Thread::Start() {
     return true;
 }
 
-bool Thread::WaitUntilReady() {
+bool dbs::Thread::WaitUntilReady() {
     if (!IsStarted()) {
         return false;
     }
@@ -54,7 +55,7 @@ bool Thread::WaitUntilReady() {
     return true;
 }
 
-bool Thread::Stop() {
+bool dbs::Thread::Stop() {
     if (!IsStarted()) {
         return false;
     } else {
@@ -63,7 +64,7 @@ bool Thread::Stop() {
     }
 }
 
-bool Thread::StopAndWait() {
+bool dbs::Thread::StopAndWait() {
     if (!Stop()) {
         return false;
     } else {
@@ -73,7 +74,7 @@ bool Thread::StopAndWait() {
     }
 }
 
-bool Thread::WaitUntilDone() {
+bool dbs::Thread::WaitUntilDone() {
     if (!IsStarted() || !IsStopRequested()) {
         return false;
     } else {
@@ -84,7 +85,7 @@ bool Thread::WaitUntilDone() {
 }
 
 
-void Thread::CleanUp() {
+void dbs::Thread::CleanUp() {
     std::unique_lock<std::mutex> lock(mutex_);
     thread_->join();
     delete thread_;
@@ -97,7 +98,7 @@ void Thread::CleanUp() {
     done_ = false;
 }
 
-bool Thread::PauseAndWait() {
+bool dbs::Thread::PauseAndWait() {
     if (!Pause()) {
         return false;
     } else {
@@ -108,7 +109,7 @@ bool Thread::PauseAndWait() {
     }
 }
 
-bool Thread::ResumeAndWait() {
+bool dbs::Thread::ResumeAndWait() {
     if (!Resume()) {
         return false;
     } else {
@@ -119,7 +120,7 @@ bool Thread::ResumeAndWait() {
     }
 }
 
-void Thread::operator()() {
+void dbs::Thread::operator()() {
     Init();
     SetReady();
     unsigned int loops_done = 0;

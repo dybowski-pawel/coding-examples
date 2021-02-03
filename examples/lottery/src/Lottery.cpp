@@ -20,8 +20,8 @@
 // Created by pawel on 08.12.20.
 //
 
-#include <LottoMachine.h>
-#include "../include/Lottery.h"
+#include "Lottery.h"
+#include "LottoMachine.h"
 
 LottoTicket Lottery::GetTicket(const unsigned int &bets, const unsigned int &drawsPerBet, const int &min_value, const int &max_value) {
     LottoTicket lottoTicket;

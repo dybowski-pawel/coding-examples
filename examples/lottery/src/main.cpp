@@ -20,11 +20,12 @@
 // Created by pawel on 08.12.20.
 //
 
+#include "Lottery.h"
+#include "Version.h"
+
 #include <iostream>
 #include <string>
 #include <chrono>
-#include <Lottery.h>
-#include "Version.h"
 
 int main(int argc, const char *argv[]) {
 

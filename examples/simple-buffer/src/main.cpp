@@ -20,13 +20,14 @@
 // Created by pawel on 02.09.20.
 //
 
-#include <iostream>
-#include <Counter.h>
+#include "Counter.h"
 #include "Version.h"
+
+#include <iostream>
 
 int main(int argc, const char *argv[]) {
 
-    std::cout << "Version: " << Version::GetVersion() << std::endl << std::endl;
+    std::cout << "Version: " << dbs::Version::GetVersion() << std::endl << std::endl;
     Counter counter(0, true, 500);
     counter.WaitUntilReady();
     counter.AddToBuffer(4);
@@ -38,7 +39,7 @@ int main(int argc, const char *argv[]) {
     counter.AddToBuffer(7);
     while (!counter.IsBufferEmpty()) {
         counter.DisplayAccumulatedValue();
-        Thread::Sleep(200);
+        dbs::Thread::Sleep(200);
     }
     counter.StopAndWait();
 

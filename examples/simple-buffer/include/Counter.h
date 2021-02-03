@@ -23,11 +23,12 @@
 #ifndef EXAMPLES_COUNTER_H
 #define EXAMPLES_COUNTER_H
 
-#include <Thread.h>
-#include <Buffer.h>
+#include "Thread.h"
+#include "Buffer.h"
 
-class Counter : public Thread {
-    using Thread::Thread;
+#include <mutex>
+
+class Counter : public dbs::Thread {
 public:
     /*******************************************************************************
      * Add new value to buffer. When thread receives it, it will be added to sum
@@ -58,7 +59,7 @@ protected:
     void DeInit() override;
 
     std::mutex mutex_;
-    Buffer<int> number_buffer_;
+    dbs::Buffer<int> number_buffer_;
     int accumulated_value_{0};
 };
 

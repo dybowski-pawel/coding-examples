@@ -21,6 +21,7 @@
 //
 
 #include "Counter.h"
+
 #include <iostream>
 
 void Counter::AddToBuffer(int value) {

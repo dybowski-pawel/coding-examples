@@ -25,32 +25,35 @@
 
 #include <string>
 
-class Version {
-public:
+namespace dbs {
 
-    Version() = delete;
+    class Version {
+    public:
 
-    /*******************************************************************************
-     * Get current code version
-     *
-     * @return Current version in format major.minor.patch+build
-     ******************************************************************************/
-    static std::string GetVersion();
+        Version() = delete;
 
-    /*******************************************************************************
-     * Calculate value of current code version.
-     *
-     * Obtained value can be used to determine which version of code is newer
-     *
-     * @return Value of version in format major*1.000.000 + minor*1.000 + patch
-     ******************************************************************************/
-    static int CalculateValue();
+        /*******************************************************************************
+         * Get current code version
+         *
+         * @return Current version in format major.minor.patch+build
+         ******************************************************************************/
+        static std::string GetVersion();
 
-private:
-    static constexpr char *VERSION_MAJOR = (char *) "0";
-    static constexpr char *VERSION_MINOR = (char *) "1";
-    static constexpr char *VERSION_PATCH = (char *) "12";
-    static constexpr char *VERSION_BUILD = (char *) "";
-};
+        /*******************************************************************************
+         * Calculate value of current code version.
+         *
+         * Obtained value can be used to determine which version of code is newer
+         *
+         * @return Value of version in format major*1.000.000 + minor*1.000 + patch
+         ******************************************************************************/
+        static int CalculateValue();
+
+    private:
+        static constexpr char *VERSION_MAJOR = (char *) "0";
+        static constexpr char *VERSION_MINOR = (char *) "1";
+        static constexpr char *VERSION_PATCH = (char *) "12";
+        static constexpr char *VERSION_BUILD = (char *) "";
+    };
+}
 
 #endif //EXAMPLES_VERSION_H

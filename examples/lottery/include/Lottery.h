@@ -23,7 +23,6 @@
 #ifndef EXAMPLES_LOTTERY_H
 #define EXAMPLES_LOTTERY_H
 
-
 #include "LottoTicket.h"
 
 class Lottery {
