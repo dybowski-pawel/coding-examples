@@ -20,13 +20,8 @@
 // Created by pawel on 17.11.21.
 //
 
-#include <iostream>
-
-#include "Version.h"
 #include "Screenshot.h"
 
-int main(int argc, const char* argv[]) {
-	std::cout << "Version: " << dbs::Version::GetVersion() << std::endl;
-	Screenshot::CaptureScreen();
-	return 0;
+int Screenshot::CaptureScreen() {
+	return -1;
 }

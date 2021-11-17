@@ -18,10 +18,9 @@
 
 SET(source_Files
         src/main.cpp
+        src/Screenshot.cpp
         ../../src/Version.cpp
         )
-
-add_subdirectory(../../external/OpenCV-4.5.4/opencv/sources ../../external/OpenCV-4.5.4/opencv/bin)
 
 include_directories(include)
 

@@ -20,13 +20,21 @@
 // Created by pawel on 17.11.21.
 //
 
-#include <iostream>
+#ifndef EXAMPLES_SCREENSHOT_H
+#define EXAMPLES_SCREENSHOT_H
 
-#include "Version.h"
-#include "Screenshot.h"
+#include <Windows.h>
+//#include "opencv2/opencv.hpp"
 
-int main(int argc, const char* argv[]) {
-	std::cout << "Version: " << dbs::Version::GetVersion() << std::endl;
-	Screenshot::CaptureScreen();
-	return 0;
-}
+class Screenshot {
+
+public:
+
+	Screenshot() = delete;
+
+	BITMAPINFOHEADER createBitmapHeader(int width, int height);
+	static int CaptureScreen();
+
+};
+
+#endif //EXAMPLES_SCREENSHOT_H
