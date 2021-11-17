@@ -30,6 +30,18 @@
 
 class Counter : public dbs::Thread {
 public:
+
+    /*******************************************************************************
+     * Constructor of Counter class
+     *
+     * @param numberOfLoops How many times should loop be executed. 0 means infinite
+     * @param timeoutInMilliseconds How long to wait between each loop execution. 0 means no wait
+     * @param startImmediately Should thread be started immediately on creation
+     * It is worth to have at least some timeout to not kill the processor
+     ******************************************************************************/
+    explicit Counter(unsigned long numberOfLoops = 0, bool startImmediately = false,
+        unsigned long timeoutInMilliseconds = 10);
+
     /*******************************************************************************
      * Add new value to buffer. When thread receives it, it will be added to sum
      ******************************************************************************/

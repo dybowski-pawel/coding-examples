@@ -24,6 +24,10 @@
 
 #include <iostream>
 
+
+Counter::Counter(unsigned long numberOfLoops, bool startImmediately, unsigned long timeoutInMilliseconds)
+    : dbs::Thread(numberOfLoops, startImmediately, timeoutInMilliseconds) {};
+
 void Counter::AddToBuffer(int value) {
     if (!IsReady() || IsStopRequested()) {
         return;;

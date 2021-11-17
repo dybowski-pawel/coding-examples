@@ -37,7 +37,7 @@ int main(int argc, const char *argv[]) {
     if(argc > 1) {
         std::string arg(argv[1]);
         if(arg == "-V" || arg == "-v" || arg == "--version") {
-            std::cout << "Version: " << Version::GetVersion() << std::endl;
+            std::cout << "Version: " << dbs::Version::GetVersion() << std::endl;
             return 0;
         } else if(arg == "-h") {
             std::cout << "Usage: ./lottery numberOfBest numberOfDraws minValue maxValue" << std::endl;
