@@ -26,4 +26,6 @@ For a few reasons:
 3. [ ] Optimizations
      Since PoC is dirty code to just see if it works, and clean code is the same code, just polished, there most probably will be a lot of improvement places.
 4. [ ] More minigames
-     The fist minigame I want to start with is chopping, since this one should be the easiest to automate. Next will be mining, fishing, then catching. Those are all minigames I know of right now.
+     The fist minigame I want to start with is chopping, since this one should be the easiest to automate. Next will be mining, fishing, then catching. Those are all minigames I know of right now.\
+5. [ ] Linux support
+     If all is done, I might as well make it linux compatible.
