@@ -1,6 +1,6 @@
 //    This file is part of Examples repository by Pawe³ Dybowski.
 //
-//    Copyright (C) 2020 Pawe³ Dybowski <dybowski015 at gmail dot com>
+//    Copyright (C) 2021 Pawe³ Dybowski <dybowski015 at gmail dot com>
 //    https://github.com/dybowski-pawel/coding-examples
 //
 //    Examples is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
 #define EXAMPLES_SCREENSHOT_H
 
 #include <Windows.h>
-//#include "opencv2/opencv.hpp"
+#include <opencv2/opencv.hpp>
 
 class Screenshot {
 
@@ -32,8 +32,8 @@ public:
 
 	Screenshot() = delete;
 
-	BITMAPINFOHEADER createBitmapHeader(int width, int height);
-	static int CaptureScreen();
+	static BITMAPINFOHEADER createBitmapHeader(int width, int height);
+	static cv::Mat CaptureScreen(HWND hwnd, int& screenx, int& screeny, int& width, int& height);
 
 };
 
