@@ -139,6 +139,10 @@ int main(int argc, const char* argv[]) {
 		cv::Mat src;
 		int x, y, w, h;
 		if (fromScreen) {
+			x = GetSystemMetrics(SM_XVIRTUALSCREEN);
+			y = GetSystemMetrics(SM_YVIRTUALSCREEN);
+			w = GetSystemMetrics(SM_CXVIRTUALSCREEN);
+			h = GetSystemMetrics(SM_CYVIRTUALSCREEN);
 			src = Screenshot::CaptureScreen(hwnd, x, y, w, h);
 		} else {
 			std::stringstream inputImageName;

@@ -52,7 +52,7 @@ namespace dbs {
     private:
         static constexpr char *VERSION_MAJOR = (char *) "0";
         static constexpr char *VERSION_MINOR = (char *) "1";
-        static constexpr char *VERSION_PATCH = (char *) "14";
+        static constexpr char *VERSION_PATCH = (char *) "15";
         static constexpr char *VERSION_BUILD = (char *) "";
     };
 }

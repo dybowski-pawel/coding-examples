@@ -30,12 +30,6 @@ cv::Mat Screenshot::CaptureScreen(HWND hwnd, int& screenx, int& screeny, int& wi
     HDC hwindowCompatibleDC = CreateCompatibleDC(hwindowDC);
     SetStretchBltMode(hwindowCompatibleDC, COLORONCOLOR);
 
-    // define scale, height and width
-    screenx = GetSystemMetrics(SM_XVIRTUALSCREEN);
-    screeny = GetSystemMetrics(SM_YVIRTUALSCREEN);
-    width = GetSystemMetrics(SM_CXVIRTUALSCREEN);
-    height = GetSystemMetrics(SM_CYVIRTUALSCREEN);
-
     // create mat object
     src.create(height, width, CV_8UC4);
 
