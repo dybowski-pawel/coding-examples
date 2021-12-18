@@ -29,3 +29,13 @@ For a few reasons:
      The fist minigame I want to start with is chopping, since this one should be the easiest to automate. Next will be mining, fishing, then catching. Those are all minigames I know of right now.\
 5. [ ] Linux support
      If all is done, I might as well make it linux compatible.
+     It might be worthless, as this game does not seem to be running for me on linux.
+     However, there is a web version that will work anywhere, so it might be worth it anyways.
+6. [ ] Android support
+     There is an steam version that I want to support first. 
+     There is also a version on android. Having a bot for android will be nicer, since I wouldn't have to open PC to run it.
+7. [ ] Machine learning
+     This is a really wishfull thinking as I have no expirience with machine learning so far. If I do have time to read about it (I might have to start doing it in python, though) and actually implement, then there is a huge potential that a machine learned algorithm will be much better than whatever I can think of. 
+     It might be an interesting expirience.
+8. [ ] Bot for collecting items on the map
+     This one should be easy. Just make a screenshot and check all possible items if they are lying on the ground and pick up.
