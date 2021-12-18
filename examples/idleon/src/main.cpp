@@ -117,10 +117,7 @@ cv::Vec3b getPixel(cv::Mat src, bool fromScreen, int x, int y) {
 
 int main(int argc, const char* argv[]) {
 	std::cout << "Version: " << dbs::Version::GetVersion() << std::endl;
-
-
-	HWND hwnd = GetDesktopWindow();
-
+	
 	bool fromScreen = false;
 
 	unsigned int counter = 255;
@@ -130,12 +127,14 @@ int main(int argc, const char* argv[]) {
 	while (cap.isOpened()) {
 		counter++;
 #else
+	HWND hwnd = GetDesktopWindow();
 	while(counter < 275) {
 #endif
 
-		std::stringstream inputBase, outputBase;
-		inputBase << "C:/Users/dybas/Data/idleon/input/" << std::setfill('0') << std::setw(4) << counter;
-		outputBase << "C:/Users/dybas/Data/idleon/output/" << std::setfill('0') << std::setw(4) << counter;
+		std::stringstream baseDir, inputBase, outputBase;
+		baseDir << "C:/Users/dybas/Data/idleon/";
+		inputBase  << baseDir.str() << "input/"  << std::setfill('0') << std::setw(4) << counter;
+		outputBase << baseDir.str() << "output/" << std::setfill('0') << std::setw(4) << counter;
 
 		cv::Mat src;
 		int x, y, w, h;
@@ -432,6 +431,25 @@ int main(int argc, const char* argv[]) {
 
 			//now we have the areas where it is nice and where it is bad!
 			//time to find the leaf :)
+
+
+			auto leaf = cv::imread(baseDir.str() + "leaf.png", cv::IMREAD_COLOR);
+			cv::Mat result = cv::Mat::eye(1, 1, CV_32F);
+			cv::matchTemplate(cropped, leaf, result, cv::TM_CCOEFF_NORMED);
+			double minVal, maxVal;
+			cv::Point minPoint, maxPoint;
+			cv::minMaxLoc(result, &minVal, &maxVal, &minPoint, &maxPoint);
+			minPoint = cv::Point(maxPoint.x + leaf.cols, maxPoint.y + leaf.rows);
+
+			cv::rectangle(croppedDraw, maxPoint, minPoint, cv::Scalar(255, 255, 255));
+
+			cv::Point leafBottom(maxPoint.x + 8, maxPoint.y + leaf.rows);
+			cv::Point underLeafBottom(maxPoint.x + 8, yBottomCropped);
+
+			cv::line(croppedDraw, leafBottom, underLeafBottom, cv::Scalar(255, 255, 255));
+
+			// And here we have a nicely detected place where leaf is now ! 
+			// That's actually pretty cool
 
 			// save img
 
