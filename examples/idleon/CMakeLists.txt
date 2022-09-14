@@ -24,16 +24,17 @@ SET(source_Files
 
 include_directories(include)
 
-SET("OpenCV_DIR" "C:/Users/dybas/Data/OpenCV-4.5.4/build")
+SET("OpenCV_DIR" "${PROJECT_SOURCE_DIR}/external/OpenCV-4.5.4/build")
+
 find_package(OpenCV REQUIRED)
 include_directories( ${OpenCV_INCLUDE_DIRS} )
-
-add_executable(idleon
-        ${source_Files}
-        )
-        
-target_link_libraries(idleon ${OpenCV_LIBS} )
 
 message(STATUS "OpenCV_DIR: ${OpenCV_DIR}")
 message(STATUS "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}")
 message(STATUS "OpenCV_LIBS: ${OpenCV_LIBS}")
+
+add_executable(idleon
+        ${source_Files}
+        )        
+
+target_link_libraries(idleon ${OpenCV_LIBS} )
