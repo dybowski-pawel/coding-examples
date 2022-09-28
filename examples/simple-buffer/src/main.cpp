@@ -41,6 +41,7 @@ int main(int argc, const char *argv[]) {
         counter.DisplayAccumulatedValue();
         dbs::Thread::Sleep(200);
     }
+    counter.DisplayAccumulatedValue();
     counter.StopAndWait();
 
     return 0;
