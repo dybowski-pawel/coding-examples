@@ -16,25 +16,34 @@
 #    You should have received a copy of the GNU General Public License
 #    along with Examples.  If not, see <https://www.gnu.org/licenses/>.
 
+SET("OpenCV_BASE_DIR" "${PROJECT_SOURCE_DIR}/../../OpenCV-4.6.0")
+SET("OpenCV_DIR" "${OpenCV_BASE_DIR}/mingw-build")
+SET("OpenCV_SRC_DIR" "${OpenCV_BASE_DIR}/sources")
+SET("OpenCV_INCLUDE_DIR" "${OpenCV_SRC_DIR}/include")
+
+find_package(OpenCV REQUIRED)
+
 SET(source_Files
         src/main.cpp
         src/Screenshot.cpp
         ../../src/Version.cpp
         )
 
-include_directories(include)
+SET(include_Files
+        include
+        ${OpenCV_INCLUDE_DIRS}
+        )
 
-SET("OpenCV_DIR" "${PROJECT_SOURCE_DIR}/external/OpenCV-4.5.4/build")
+SET(link_Libraries
+        ${OpenCV_LIBS}
+        )
 
-find_package(OpenCV REQUIRED)
-include_directories( ${OpenCV_INCLUDE_DIRS} )
+include_directories(${include_Files})
+
+add_executable(idleon ${source_Files})
+
+target_link_libraries(idleon ${link_Libraries})
 
 message(STATUS "OpenCV_DIR: ${OpenCV_DIR}")
 message(STATUS "OpenCV_INCLUDE_DIRS: ${OpenCV_INCLUDE_DIRS}")
 message(STATUS "OpenCV_LIBS: ${OpenCV_LIBS}")
-
-add_executable(idleon
-        ${source_Files}
-        )        
-
-target_link_libraries(idleon ${OpenCV_LIBS} )
